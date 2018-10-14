@@ -1,0 +1,41 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description": "Sample S3 Bucket",
+  "Resources":
+  { 
+    "s3bucketforlearning":
+    {
+      "Type": "AWS::S3::Bucket",
+      "Properties":
+      {
+        "AccessControl":"PublicRead",
+        "WebsiteConfiguration":
+        {
+          "IndexDocument":"Index.html",
+          "ErrorDocument":"Error.html"
+        }
+      },
+      "DeletionPolicy":"Retain"
+    } 
+    
+  },
+  "Outputs":
+  {
+    "WebsiteURL":
+    {
+      "Value":
+      {
+        "Fn::GetAtt": ["s3bucketforlearning", "WebsiteURL"]
+      },
+      "Description" : "URL of website hosted on s3 bucket is: "
+    },
+    "S3BucketSecureURL11":
+    {
+      "Value":
+      {
+        "Fn::Join" : ["",["https://",{"Fn::GetAtt":["s3bucketforlearning","DomainName"]} ]]
+      },
+	  "Description": "S3 Bucket Secure URL"
+    }
+  }
+}
