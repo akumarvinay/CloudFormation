@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion":"2010-09-09",
+  "Description":"Parameters to provide",
+  "Parameters":
+  {
+    "Instance Type":
+    {
+      "Type": "String",
+      "Default": "t2.micro",
+      "AllowedValues": ["t2.micro","m1.medium","m1.small"],
+      "Description": "Enter name of ec2 instance type from values  t2.micro m1.medium m1.small default value is t2.micro"
+    }
+  },
+  "Resources":
+  {
+    "s3bucket":
+    {
+      "Type":"AWS:S3:Bucket",
+      "Properties":
+      {
+        "AccessControl":"Public"
+      },
+      "DeletionPolicy":"Retain"
+    }
+  }
+}
